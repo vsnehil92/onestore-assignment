@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <style>
+        #yes {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #no {
+            background-color: #f44336;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>PDF data</h1><br />
+    <pre>{PDFDATA}</pre></br>
+    <h1>JSON data</h1><br />
+    <div id="json" style="word-wrap: break-word;">{JSON}</div>
+    <div id="form">
+        <h4>Are you sure you want to save the job description</h4>
+        <div><button id="yes">yes</button><button id="no">No</button></div>
+    </div>
+    <script>
+        $("#yes").click(() => {
+            sendRequest(true)
+        })
+
+        $("#no").click(() => {
+            sendRequest(false)
+        })
+
+        function sendRequest(save) {
+            body = { save: false }
+            if (save) {
+                body.save = true;
+                body.jobDescription = $("#json").text()
+            }
+            $.post("/job-description", body)
+                .done(function () {
+                    if (save) {
+                        alert("data saved")
+                    } else {
+                        alert("data not saved")
+                    }
+                    $("#form").hide();
+                })
+                .fail(function () {
+                    alert("error");
+                })
+        }
+    </script>
+</body>
+
+</html>

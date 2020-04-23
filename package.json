@@ -1,0 +1,24 @@
+{
+  "name": "jd-parser",
+  "version": "1.0.0",
+  "description": "this is the assignment project to parse the doc and save in mongo",
+  "main": "bin/www",
+  "scripts": {
+    "dev": "nodemon bin/www",
+    "test": "npm run test"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "node <vsnehil92@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.10",
+    "pdfreader": "^1.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
